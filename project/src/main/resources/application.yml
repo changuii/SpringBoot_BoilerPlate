@@ -1,10 +1,10 @@
 
 # default
 spring:
-  # ??? ???? ??
+  # 적용시킬 profile
   profiles:
     active: dev
-  # ??? multipart form-data ?? ??
+  # multipart form-data 크기 지정
   servlet:
     multipart:
       max-request-size: 50MB
@@ -12,13 +12,13 @@ spring:
 
 server:
   port: 80
-  # Mock Mvc test response ?? ??
+  # Mock Mvc test response
   servlet:
     encoding:
       charset: UTF-8
       force: true
 
-  # HTTP ssl ??
+  # HTTP ssl 적용
 #  ssl:
 #    key-store: "classpath:{key}"
 #    key-store-type: PKCS12
@@ -39,7 +39,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-    show-sql: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 ---
 # prod
 spring:
