@@ -1,0 +1,60 @@
+
+# default
+spring:
+  # ??? ???? ??
+  profiles:
+    active: dev
+  # ??? multipart form-data ?? ??
+  servlet:
+    multipart:
+      max-request-size: 50MB
+      max-file-size: 50MB
+
+server:
+  port: 80
+  # Mock Mvc test response ?? ??
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+  # HTTP ssl ??
+#  ssl:
+#    key-store: "classpath:{key}"
+#    key-store-type: PKCS12
+#    key-password:
+
+
+---
+# dev
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mariadb://localhost:3306/projectName?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+---
+# prod
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATASOURCE}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+
+
